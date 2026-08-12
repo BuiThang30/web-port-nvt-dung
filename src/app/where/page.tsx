@@ -69,24 +69,22 @@ export default function WherePage() {
                     </div>
                   </div>
 
-                  {/* Hoạt động 2 */}
+                  {/* Hoạt động 2 (Đã sửa lỗi hiển thị to khổng lồ) */}
                   <div className={styles.sectionBlock}>
                     <div className={styles.sectionSubTitle}>
                       Head of Chemistry Expertise in HSGS Educational Assistance Team
                     </div>
-                      <div className={styles.certWrapper} style={{border:"none",}}>
+                    <div className={styles.galleryGrid}>
+                      <div className={styles.certWrapper} style={{ border: "none" }}>
                         <Image
                           src="/image/school-cert.png"
                           alt="HSGS Certificate"
-                          width={328}
-                          height={328}
-                          style={{
-                            width: "auto",
-                            height: "100%",
-                            objectFit: "contain",
-                          }}
+                          fill
+                          sizes="328px"
+                          style={{ objectFit: 'contain' }}
                         />
                       </div>
+                    </div>
                   </div>
 
                   {/* Hoạt động 3 */}
