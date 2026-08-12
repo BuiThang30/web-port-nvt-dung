@@ -69,18 +69,18 @@ body {
 /* Tablet Dọc (< 1024px) */
 @media screen and (max-width: 1023px) {
   .app-container {
-    box-shadow: none; /* Bỏ shadow trên thiết bị nhỏ để tối ưu hiệu năng */
+    box-shadow: none;
   }
 }
 
 /* Mobile & Tablet nhỏ (< 768px) */
 @media screen and (max-width: 767px) {
   html, body {
-    background-color: #FFFFFF; /* Đổi nền body trùng màu app container trên mobile */
+    background-color: #FFFFFF;
   }
 
   .app-container {
-    min-height: 100dvh; /* Sử dụng Dynamic Viewport Height cho mobile */
+    min-height: 100dvh;
   }
 }
 

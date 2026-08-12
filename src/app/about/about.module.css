@@ -2,7 +2,7 @@
 .aboutWrapper {
   width: 100%;
   max-width: 1440px;
-  min-height: 685px; /* Dùng min-height thay vì fix cứng height để tránh tràn nội dung */
+  min-height: calc(100vh - 100px);
   height: auto;
   display: flex;
   position: relative;
