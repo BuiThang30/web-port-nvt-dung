@@ -1,0 +1,214 @@
+/* ==================== CONTAINER CHÍNH ==================== */
+.aboutWrapper {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 685px; /* Dùng min-height thay vì fix cứng height để tránh tràn nội dung */
+  height: auto;
+  display: flex;
+  position: relative;
+  padding: 48px 64px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+}
+
+/* Background hình chiếc khoan góc dưới bên trái */
+.aboutWrapper::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/image/background-about.png');
+  background-size: auto;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==================== LAYOUT ==================== */
+.aboutContent {
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+  z-index: 2;
+}
+
+/* --- Cột bên trái --- */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: #0B0A0F;
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 24px 0;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+.description {
+  color: #000000;
+  text-align: justify;
+  font-family: var(--font-mona-sans), 'Mona Sans', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.highlight {
+  background-color: #FFE600;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+/* --- Cột bên phải --- */
+.rightColumn {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageBox {
+  width: 100%;
+  height: 380px;
+  background-color: #D9D9D9;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.imageBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay dụng cụ */
+.toolsOverlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 763px; /* Không fix cứng width */
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+}
+
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+/* Desktop tiêu chuẩn (< 1440px) */
+@media screen and (max-width: 1439px) {
+  .aboutWrapper {
+    padding: 48px 40px;
+  }
+  
+  .title { font-size: 80px; }
+  .toolsOverlay { max-width: 600px; }
+  .imageBox { height: 340px; }
+}
+
+/* Laptop nhỏ / Tablet Ngang (< 1200px) */
+@media screen and (max-width: 1199px) {
+  .aboutWrapper {
+    padding: 40px 32px;
+  }
+
+  .aboutContent {
+    gap: 32px;
+  }
+
+  .title { font-size: 64px; }
+  .description { font-size: 18px; }
+  .imageBox { height: 300px; }
+  .toolsOverlay { max-width: 500px; }
+}
+
+/* Tablet Dọc (< 1024px) */
+@media screen and (max-width: 1023px) {
+  .aboutWrapper {
+    padding: 32px 24px 60px 24px; /* Tăng padding bottom cho toolsOverlay */
+  }
+
+  /* Đổi sang bố cục 1 cột */
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .title { font-size: 56px; }
+  
+  .imageBox { 
+    height: auto; 
+    aspect-ratio: 16 / 9; /* Giữ tỷ lệ ảnh tự động */
+  }
+
+  /* Giảm opacity hoặc kích thước background để tránh lấn át text */
+  .aboutWrapper::before {
+    background-size: 60%;
+    opacity: 0.5;
+  }
+}
+
+/* Mobile lớn (< 768px) */
+@media screen and (max-width: 767px) {
+  .aboutWrapper {
+    padding: 24px 16px 80px 16px;
+  }
+
+  .title { 
+    font-size: 42px; 
+    margin-bottom: 16px; 
+  }
+  
+  .description { 
+    font-size: 16px; 
+    text-align: left; /* Dễ đọc hơn text-align: justify trên mobile */
+  }
+
+  .aboutContent { gap: 24px; }
+
+  .toolsOverlay { 
+    max-width: 350px; 
+    right: -20px; /* Dịch sang phải một chút để không che nội dung */
+  }
+
+  .aboutWrapper::before {
+    background-size: 80%;
+  }
+}
+
+/* Mobile nhỏ (< 480px) */
+@media screen and (max-width: 479px) {
+  .aboutWrapper {
+    padding: 20px 12px 60px 12px;
+  }
+
+  .title { font-size: 32px; }
+  .description { font-size: 15px; }
+
+  .toolsOverlay { 
+    max-width: 250px; 
+  }
+
+  .imageBox {
+    aspect-ratio: 4 / 3;
+  }
+}

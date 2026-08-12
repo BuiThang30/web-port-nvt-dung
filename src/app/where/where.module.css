@@ -1,0 +1,315 @@
+/* ==================== CONTAINER CHÍNH ==================== */
+.whereWrapper {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  position: relative;
+  padding: 48px 49px 80px 49px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  overflow: hidden; /* Ngăn tràn nội dung con */
+}
+
+/* Background cưa + thước ở góc dưới bên phải */
+.whereWrapper::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/image/background-where.png');
+  background-size: auto;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Khung chứa chính */
+.whereContainer {
+  width: 100%;
+  max-width: 1342px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: relative;
+}
+
+/* ==================== TYPOGRAPHY & INTRO ==================== */
+.mainTitle {
+  color: #0B0A0F;
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 96px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+.introTagline {
+  width: 100%;
+  max-width: 665px;
+  background-color: #FFE600;
+  color: #000000;
+  font-family: var(--font-mona-sans), 'Mona Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 16px;
+  margin-bottom: 32px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+/* ==================== ACCORDION LIST ==================== */
+.accordionList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid #000000;
+}
+
+.accordionList.isFirstActive {
+  border-top: none;
+}
+
+.accordionItem {
+  width: 100%;
+  border-bottom: 2px solid #000000;
+  box-sizing: border-box;
+}
+
+.accordionItem:last-child.activeItem {
+  border-bottom: none;
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Đẩy icon sang phải tự nhiên */
+  padding: 16px 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.accordionTitle {
+  color: #0B0A0F;
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.arrowIcon {
+  width: 48px;
+  height: auto;
+  margin-left: 24px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Nội dung bên trong khi mở */
+.accordionContent {
+  padding: 24px 0 40px 0;
+  font-family: var(--font-mona-sans), 'Mona Sans', sans-serif;
+  color: #000000;
+  width: 100%;
+}
+
+.activeTitle {
+  font-size: 80px;
+  margin-bottom: 32px;
+  cursor: pointer;
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  color: #0B0A0F;
+  line-height: 1;
+}
+
+/* ==================== SCHOOL SECTION (GALLERY) ==================== */
+.sectionBlock {
+  margin-bottom: 32px;
+}
+
+.sectionSubTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #000000;
+  max-width: 665px;
+}
+
+/* Đổi thành CSS Grid để tự động rớt dòng mượt mà */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.imageWrapper, .certWrapper {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 164 / 117;
+  border: 1px solid #000000;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.imageWrapper {
+  background-color: #F0F0F0;
+}
+
+.certWrapper {
+  background-color: #FFFFFF;
+}
+
+/* ==================== SOCIETY SECTION ==================== */
+.societyContent {
+  width: 100%;
+  max-width: 665px;
+  color: #000000;
+  text-align: justify;
+  font-family: var(--font-mona-sans), "Mona Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.societyItem {
+  margin-bottom: 24px;
+}
+
+.societyItem p, .societyLink {
+  color: #000000;
+  font-family: var(--font-mona-sans), "Mona Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.societyItem p {
+  text-align: justify;
+  margin-bottom: 4px;
+}
+
+.societyLink {
+  text-align: left;
+  word-break: break-all;
+  text-decoration: underline;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.societyLink:hover {
+  opacity: 0.7;
+}
+
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+/* Desktop tiêu chuẩn (< 1440px) */
+@media screen and (max-width: 1439px) {
+  .whereWrapper {
+    padding: 40px 32px 64px 32px;
+  }
+  
+  .mainTitle { font-size: 80px; }
+  .activeTitle { font-size: 64px; }
+  .accordionTitle { font-size: 36px; }
+}
+
+/* Laptop nhỏ / Tablet Ngang (< 1200px) */
+@media screen and (max-width: 1199px) {
+  .whereWrapper {
+    padding: 32px 24px 48px 24px;
+  }
+
+  .mainTitle { font-size: 64px; }
+  .activeTitle { font-size: 56px; }
+  .accordionTitle { font-size: 32px; }
+
+  /* Gallery rớt xuống 3 cột */
+  .galleryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet Dọc (< 1024px) */
+@media screen and (max-width: 1023px) {
+  .mainTitle { font-size: 56px; }
+  .activeTitle { font-size: 48px; }
+  .accordionTitle { font-size: 28px; }
+  .introTagline { font-size: 15px; }
+
+  /* Gallery rớt xuống 2 cột */
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .arrowIcon { width: 40px; }
+}
+
+/* Mobile lớn (< 768px) */
+@media screen and (max-width: 767px) {
+  .whereWrapper {
+    padding: 24px 16px 40px 16px;
+  }
+
+  .mainTitle { 
+    font-size: 42px; 
+    margin-bottom: 12px;
+  }
+  
+  .activeTitle { 
+    font-size: 36px; 
+    margin-bottom: 24px;
+  }
+
+  .accordionTitle { font-size: 24px; }
+  .arrowIcon { width: 32px; margin-left: 16px; }
+  
+  .societyContent, .societyItem p, .societyLink {
+    font-size: 16px;
+  }
+  
+  .introTagline {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  /* Giảm size background tránh bị tràn viền rối mắt */
+  .whereWrapper::before {
+    background-size: 50%;
+  }
+}
+
+/* Mobile nhỏ (< 480px) */
+@media screen and (max-width: 479px) {
+  .whereWrapper {
+    padding: 20px 12px 32px 12px;
+  }
+
+  .mainTitle { font-size: 32px; }
+  .activeTitle { font-size: 28px; }
+  .accordionTitle { font-size: 20px; }
+  .arrowIcon { width: 24px; margin-left: 12px; }
+
+  /* Gallery về 1 cột trên điện thoại nhỏ */
+  .galleryGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .societyContent, .societyItem p, .societyLink {
+    font-size: 15px;
+  }
+}

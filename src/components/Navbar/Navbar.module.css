@@ -1,0 +1,335 @@
+.navbarContainer {
+  width: 100%;
+  max-width: 100%;
+  margin: 10px 0;
+  padding: 12px 0;
+  box-sizing: border-box;
+
+  border-top: 2px solid #0b0a0f;
+  border-bottom: 2px solid #0b0a0f;
+  position: relative;
+  z-index: 100;
+}
+
+.navbar {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ==================== BRAND ==================== */
+
+.navBrand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 24px;
+  border: 2px solid #0b0a0f;
+  border-radius: 9999px;
+
+  background-color: transparent;
+  color: #0b0a0f;
+
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  will-change: transform, background-color, color, box-shadow;
+  transition: 
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navBrand:hover {
+  background-color: #0b0a0f;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(11, 10, 15, 0.15);
+}
+
+.navBrand:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.navBrandActive {
+  background-color: #0b0a0f;
+  color: #ffffff;
+}
+
+/* ==================== NAV LINKS ==================== */
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #0b0a0f;
+  border-radius: 9999px;
+  background-color: transparent;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 28px;
+  border-radius: 9999px;
+
+  color: #0b0a0f;
+
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  will-change: transform, background-color, color, box-shadow;
+  transition: 
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navLink:hover {
+  background-color: #0b0a0f;
+  color: #ffffff;
+  transform: translateY(0px) scale(1.03);
+  box-shadow: 0 3px 10px rgba(11, 10, 15, 0.12);
+}
+
+.navLinkActive {
+  background-color: #0b0a0f;
+  color: #ffffff;
+}
+
+/* ==================== TOGGLE BUTTON ==================== */
+
+.toggleBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 2px solid #0b0a0f;
+  border-radius: 50%;
+  cursor: pointer;
+  gap: 5px;
+  padding: 0;
+  z-index: 101;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.toggleBtn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #0b0a0f;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.toggleBtnActive span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.toggleBtnActive span:nth-child(2) {
+  opacity: 0;
+}
+
+.toggleBtnActive span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+/* Desktop (< 1440px) */
+@media screen and (max-width: 1439px) {
+  .navbar {
+    max-width: 1200px;
+  }
+
+  .navBrand {
+    font-size: 24px;
+    padding: 9px 22px;
+  }
+
+  .navLink {
+    font-size: 24px;
+    padding: 8px 22px;
+  }
+}
+
+/* Laptop / Tablet Ngang (< 1200px) */
+@media screen and (max-width: 1199px) {
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .navBrand {
+    font-size: 20px;
+    padding: 8px 18px;
+  }
+
+  .navLink {
+    font-size: 20px;
+    padding: 7px 18px;
+  }
+}
+
+/* Tablet Dọc (< 1024px) */
+@media screen and (max-width: 1023px) {
+  .navbarContainer {
+    padding: 10px 0;
+  }
+
+  .navbar {
+    gap: 12px;
+  }
+
+  .navBrand {
+    font-size: 18px;
+    padding: 8px 16px;
+  }
+
+  .navLinks {
+    gap: 2px;
+  }
+
+  .navLink {
+    font-size: 18px;
+    padding: 6px 14px;
+  }
+}
+
+/* Mobile & Tablet nhỏ (< 768px): Toggle Menu */
+@media screen and (max-width: 767px) {
+  .navbarContainer {
+    margin: 6px 0;
+    padding: 8px 0;
+  }
+
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .navBrand {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-width: 2px;
+    max-width: calc(100% - 56px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .toggleBtn {
+    display: flex;
+  }
+
+  .navLinks {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 12px;
+    right: 12px;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 2px solid #0b0a0f;
+    border-radius: 16px;
+    padding: 12px;
+    gap: 8px;
+    box-shadow: 0 8px 24px rgba(11, 10, 15, 0.12);
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  .navLinksOpen {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .navLink {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .navLink:hover {
+    transform: none;
+  }
+}
+
+/* Mobile nhỏ (< 480px) */
+@media screen and (max-width: 479px) {
+  .navbar {
+    padding: 0 8px;
+  }
+
+  .navBrand {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .toggleBtn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .toggleBtn span {
+    width: 16px;
+  }
+
+  .toggleBtnActive span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .toggleBtnActive span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .navLinks {
+    left: 8px;
+    right: 8px;
+    padding: 8px;
+  }
+
+  .navLink {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}

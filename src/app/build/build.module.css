@@ -1,0 +1,300 @@
+/* ==================== CONTAINER CHÍNH ==================== */
+.buildWrapper {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 912px; /* Dùng min-height để mobile không bị cắt nội dung */
+  height: auto;
+  position: relative;
+  padding: 48px 64px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+}
+
+/* Background cưa + thước góc dưới bên phải */
+.buildWrapper::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/image/background-build.png');
+  background-size: auto;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Khung chứa nội dung */
+.buildContainer {
+  width: 100%;
+  max-width: 1046px; /* Thay width cứng thành max-width */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: relative;
+  margin: 0 auto; /* Căn giữa nếu màn hình rộng hơn 1046px */
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.mainTitle {
+  color: #0B0A0F;
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 96px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+.introTagline {
+  width: 100%;
+  max-width: 665px;
+  background-color: #FFE600;
+  color: #000000;
+  font-family: var(--font-mona-sans), 'Mona Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 12px 16px; /* Điều chỉnh padding cho cân đối */
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+/* ==================== ACCORDION LIST ==================== */
+.accordionList {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-top: 2px solid #000000;
+}
+
+.accordionList.hasActive {
+  justify-content: space-between;
+}
+
+.accordionList.isFirstActive {
+  border-top: none;
+}
+
+.accordionItem {
+  width: 100%;
+  border-bottom: 2px solid #000000;
+  box-sizing: border-box;
+}
+
+.accordionItem:last-child.activeItem {
+  border-bottom: none;
+}
+
+/* Khi một mục mở ra */
+.accordionItem.activeItem {
+  min-height: 650px; /* Dùng min-height thay vì height cứng */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Đẩy icon sát lề phải */
+  padding: 16px 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.accordionTitle {
+  color: #0B0A0F;
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.arrowIcon {
+  width: 48px;
+  height: auto;
+  margin-left: 24px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Nội dung bên trong */
+.accordionContent {
+  width: 100%;
+  height: 100%;
+  padding: 24px 0 40px 0;
+  box-sizing: border-box;
+  font-family: var(--font-mona-sans), 'Mona Sans', sans-serif;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.activeTitle {
+  font-family: var(--font-avilock), '1FTV Avilock', sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: #0B0A0F;
+}
+
+.textContent {
+  width: 100%;
+  max-width: 665px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* ==================== ACHIEVEMENTS (BẰNG KHEN) ==================== */
+/* Dùng CSS Grid để ảnh tự động dàn đều và rớt dòng mượt mà */
+.certificatesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.certCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.certImageWrapper {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 66 / 97; /* Tự động giữ đúng tỷ lệ thiết kế */
+  border: 1px solid #000000;
+  position: relative;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.certCaption {
+  color: #000000;
+  text-align: center; /* Đổi sang center nhìn đẹp hơn trên grid */
+  font-family: var(--font-mona-sans), "Mona Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 12px;
+}
+
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+/* Desktop tiêu chuẩn (< 1440px) */
+@media screen and (max-width: 1439px) {
+  .buildWrapper {
+    padding: 48px 40px;
+  }
+  
+  .mainTitle { font-size: 80px; }
+  .activeTitle { font-size: 64px; }
+  .accordionTitle { font-size: 36px; }
+}
+
+/* Laptop nhỏ / Tablet Ngang (< 1200px) */
+@media screen and (max-width: 1199px) {
+  .buildWrapper {
+    padding: 40px 32px;
+  }
+
+  .mainTitle { font-size: 64px; }
+  .activeTitle { font-size: 56px; }
+  .accordionTitle { font-size: 32px; }
+
+  /* Bằng khen vẫn giữ 3 cột nhưng thu nhỏ font */
+  .certCaption { font-size: 16px; }
+}
+
+/* Tablet Dọc (< 1024px) */
+@media screen and (max-width: 1023px) {
+  .buildWrapper {
+    padding: 32px 24px;
+  }
+
+  .mainTitle { font-size: 56px; }
+  .activeTitle { font-size: 48px; }
+  .accordionTitle { font-size: 28px; }
+  
+  .arrowIcon { width: 40px; }
+
+  /* Bằng khen xuống 2 cột */
+  .certificatesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Mobile lớn (< 768px) */
+@media screen and (max-width: 767px) {
+  .buildWrapper {
+    padding: 24px 16px;
+    min-height: auto;
+  }
+
+  .mainTitle { 
+    font-size: 42px; 
+    margin-bottom: 12px;
+  }
+  
+  .activeTitle { 
+    font-size: 36px; 
+    margin-bottom: 16px;
+  }
+
+  .accordionTitle { font-size: 24px; }
+  .arrowIcon { width: 32px; margin-left: 16px; }
+  
+  .textContent {
+    font-size: 15px;
+  }
+
+  .introTagline {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .buildWrapper::before {
+    background-size: 60%;
+  }
+}
+
+/* Mobile nhỏ (< 480px) */
+@media screen and (max-width: 479px) {
+  .buildWrapper {
+    padding: 20px 12px;
+  }
+
+  .mainTitle { font-size: 32px; }
+  .activeTitle { font-size: 28px; }
+  .accordionTitle { font-size: 20px; }
+  .arrowIcon { width: 24px; }
+
+  .certificatesGrid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
