@@ -53,13 +53,13 @@ export default function BuildPage() {
                   <p><strong>Dead zone Emergency distress device</strong></p>
                   <br />
                   <p><strong>Problem:</strong> Flooding regularly knocks out cell towers in Vietnam, right when people most need to call for help.</p>
-                  <br />
+
                   <p><strong>Solution:</strong> A mobile beacon that skips cell networks entirely. A GPS chip and a low-power LoRa radio send a location straight to a nearby base station when the SOS button is pressed, no satellite, no subscription.</p>
-                  <br />
+
                   <p><strong>Stack:</strong> ESP32-C3, GPS module, LoRa transceiver, Express.js/SQLite backend, live web dashboard.</p>
-                  <br />
+
                   <p><strong>Results:</strong> 94% radio delivery rate over 50 test packets, 8-10 km range, full system succeeded end-to-end 4 times out of 5.</p>
-                  <br />
+                  
                   <p><strong>Status:</strong> Working prototype. Receiver enclosure still unfinished.</p>
                 </div>
               </div>
@@ -99,11 +99,9 @@ export default function BuildPage() {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <p><strong>- Improving GI Polyp Segmentation with a Balanced-Mix-Driven Research assistant</strong></p>
-                  <br />
                   <p><strong>- Dead Zone Emergency Distress Device</strong></p>
-                  <br />
                   <p><strong>- ROBOTIC ARM FOR MOVEMENT ASSISTANCE IN PATIENTS WITH CEREBRAL PALSY</strong></p>
-                  <p style={{ color: '#444' }}>Author</p>
+                  <p><strong>Author</strong></p>
                 </div>
               </div>
             ) : (

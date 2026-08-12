@@ -89,7 +89,7 @@
 .accordionHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Đẩy icon sang phải tự nhiên */
+  justify-content: flex-start; 
   padding: 16px 0;
   cursor: pointer;
   background: transparent;
@@ -106,6 +106,7 @@
   line-height: 1;
   text-transform: uppercase;
   margin: 0;
+  width: 150px;
 }
 
 .arrowIcon {
@@ -246,7 +247,7 @@
 @media screen and (max-width: 1023px) {
   .mainTitle { font-size: 56px; }
   .activeTitle { font-size: 48px; }
-  .accordionTitle { font-size: 28px; }
+  .accordionTitle { font-size: 28px;  width: 120px;}
   .introTagline { font-size: 15px; }
 
   /* Gallery rớt xuống 2 cột */
@@ -274,7 +275,7 @@
     margin-bottom: 24px;
   }
 
-  .accordionTitle { font-size: 24px; }
+  .accordionTitle { font-size: 24px;}
   .arrowIcon { width: 32px; margin-left: 16px; }
   
   .societyContent, .societyItem p, .societyLink {
@@ -300,7 +301,7 @@
 
   .mainTitle { font-size: 32px; }
   .activeTitle { font-size: 28px; }
-  .accordionTitle { font-size: 20px; }
+  .accordionTitle { font-size: 20px; width: 100px; }
   .arrowIcon { width: 24px; margin-left: 12px; }
 
   /* Gallery về 1 cột trên điện thoại nhỏ */

@@ -2,7 +2,7 @@
 .buildWrapper {
   width: 100%;
   max-width: 1440px;
-  min-height: 912px; /* Dùng min-height để mobile không bị cắt nội dung */
+  min-height: 912px;
   height: auto;
   position: relative;
   padding: 48px 64px;
@@ -31,13 +31,13 @@
 /* Khung chứa nội dung */
 .buildContainer {
   width: 100%;
-  max-width: 1046px; /* Thay width cứng thành max-width */
+  max-width: 1342px;
   height: 100%;
   display: flex;
   flex-direction: column;
   z-index: 2;
   position: relative;
-  margin: 0 auto; /* Căn giữa nếu màn hình rộng hơn 1046px */
+  margin: 0 auto;
 }
 
 /* ==================== TYPOGRAPHY ==================== */
@@ -58,9 +58,9 @@
   background-color: #FFE600;
   color: #000000;
   font-family: var(--font-mona-sans), 'Mona Sans', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.4;
-  padding: 12px 16px; /* Điều chỉnh padding cho cân đối */
+  padding: 12px 16px;
   margin-bottom: 24px;
   box-sizing: border-box;
   border-radius: 4px;
@@ -96,7 +96,7 @@
 
 /* Khi một mục mở ra */
 .accordionItem.activeItem {
-  min-height: 650px; /* Dùng min-height thay vì height cứng */
+  min-height: 650px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -106,7 +106,7 @@
 .accordionHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Đẩy icon sát lề phải */
+  justify-content: flex-start; 
   padding: 16px 0;
   cursor: pointer;
   background: transparent;
@@ -123,6 +123,7 @@
   line-height: 1;
   text-transform: uppercase;
   margin: 0;
+  width: 220px;
 }
 
 .arrowIcon {
@@ -158,47 +159,51 @@
 .textContent {
   width: 100%;
   max-width: 665px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
   text-align: justify;
 }
 
-/* ==================== ACHIEVEMENTS (BẰNG KHEN) ==================== */
-/* Dùng CSS Grid để ảnh tự động dàn đều và rớt dòng mượt mà */
+/* ==================== ACHIEVEMENTS ==================== */
 .certificatesGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 264px); 
   gap: 24px;
   margin-top: 16px;
   width: 100%;
+  justify-content: flex-start; 
 }
 
 .certCard {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .certImageWrapper {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 66 / 97; /* Tự động giữ đúng tỷ lệ thiết kế */
+  width: 264px; 
+  height: 388px;
+  aspect-ratio: 66 / 97;
   border: 1px solid #000000;
   position: relative;
   background-color: #FFFFFF;
   box-sizing: border-box;
+  margin: 0 auto; 
+  max-width: 100%; 
 }
 
 .certCaption {
+  width: 100%;
+  max-width: 264px; 
   color: #000000;
-  text-align: center; /* Đổi sang center nhìn đẹp hơn trên grid */
+  text-align: center;
   font-family: var(--font-mona-sans), "Mona Sans", sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.4;
   margin-top: 12px;
 }
-
 
 /* ==================== RESPONSIVE BREAKPOINTS ==================== */
 
@@ -222,9 +227,6 @@
   .mainTitle { font-size: 64px; }
   .activeTitle { font-size: 56px; }
   .accordionTitle { font-size: 32px; }
-
-  /* Bằng khen vẫn giữ 3 cột nhưng thu nhỏ font */
-  .certCaption { font-size: 16px; }
 }
 
 /* Tablet Dọc (< 1024px) */
@@ -235,14 +237,18 @@
 
   .mainTitle { font-size: 56px; }
   .activeTitle { font-size: 48px; }
-  .accordionTitle { font-size: 28px; }
+  
+  .accordionTitle { 
+    font-size: 28px; 
+    width: 250px;
+  }
   
   .arrowIcon { width: 40px; }
 
-  /* Bằng khen xuống 2 cột */
+  /* Giữ cột đúng 264px, xuống 2 cột */
   .certificatesGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(2, 264px);
+    gap: 24px;
   }
 }
 
@@ -263,20 +269,25 @@
     margin-bottom: 16px;
   }
 
-  .accordionTitle { font-size: 24px; }
+  .accordionTitle { 
+    font-size: 24px; 
+    width: 200px;
+  }
+  
   .arrowIcon { width: 32px; margin-left: 16px; }
   
-  .textContent {
-    font-size: 15px;
-  }
-
   .introTagline {
-    font-size: 14px;
-    padding: 10px;
+    padding: 10px; 
   }
 
   .buildWrapper::before {
     background-size: 60%;
+  }
+
+  /* Giữ cột đúng 264px, dồn vào giữa trên mobile cho đẹp */
+  .certificatesGrid {
+    grid-template-columns: 264px;
+    justify-content: center;
   }
 }
 
@@ -288,13 +299,11 @@
 
   .mainTitle { font-size: 32px; }
   .activeTitle { font-size: 28px; }
-  .accordionTitle { font-size: 20px; }
-  .arrowIcon { width: 24px; }
-
-  .certificatesGrid {
-    grid-template-columns: 1fr;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+  
+  .accordionTitle { 
+    font-size: 20px; 
+    width: 150px;
   }
+  
+  .arrowIcon { width: 24px; }
 }
