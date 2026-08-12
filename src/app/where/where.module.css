@@ -2,7 +2,7 @@
 .whereWrapper {
   width: 100%;
   max-width: 1440px;
-  min-height: 795px;
+  min-height: calc(100vh - 100px);
   position: relative;
   padding: 48px 49px 80px 49px;
   box-sizing: border-box;
