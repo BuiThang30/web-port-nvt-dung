@@ -10,7 +10,8 @@ export default function AboutPage() {
         <div className={styles.leftColumn}>
           <h1 className={styles.title}>ABOUT ME</h1>
           <p className={styles.description}>
-            Before any piece of a model gets glued in place, it gets tuned, swapped, rearranged until it earns something permanent. The same instinct carried onto chemistry: trying different combinations of chemicals and formulas until it actually worked. Engineering, and more recently business, followed the same thread outward. Most of what&#39;s on this site started the same way: tried loose, adjusted, and only made permanent once it actually held up.
+            Every piece here started as scrap once: a bolt, a wire, a motherboard nobody else wanted. The question is always the same: what could this become? Chemistry has asked for numbers that didn&#39;t add up at first. Engineering asked for a device that failed more than it worked. Lately, it&#39;s the question behind wanting to build something that outlasts me. <br/>
+            The rest of this site is what came of asking.
           </p>
         </div>
 

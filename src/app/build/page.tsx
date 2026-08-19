@@ -98,10 +98,43 @@ export default function BuildPage() {
                   className={styles.textContent}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <p><strong>- Improving GI Polyp Segmentation with a Balanced-Mix-Driven Research assistant</strong></p>
-                  <p><strong>- Dead Zone Emergency Distress Device</strong></p>
-                  <p><strong>- ROBOTIC ARM FOR MOVEMENT ASSISTANCE IN PATIENTS WITH CEREBRAL PALSY</strong></p>
-                  <p><strong>Author</strong></p>
+                  {/* Item 1 */}
+                  <div className={styles.researchItem}>
+                    <p className={styles.researchTitle}>
+                      -Improving GI Polyp Segmentation with a Balanced-Mix-Driven
+                    </p>
+                    <p className={styles.authorText}>Author</p>
+                  </div>
+
+                  {/* Item 2 */}
+                  <div className={styles.researchItem}>
+                    <p className={styles.researchTitle}>
+                      -Dead Zone Emergency Distress Device
+                    </p>
+                    <a
+                      href="https://cokhivietnam.vn/post/thiet-bi-phat-tin-hieu-cap-cuu-cho-vung-mat-song-di-dong"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.viewHereLink}
+                    >
+                      View Here
+                    </a>
+                  </div>
+
+                  {/* Item 3 */}
+                  <div className={styles.researchItem}>
+                    <p className={styles.researchTitle}>
+                      -ROBOTIC ARM FOR MOVEMENT ASSISTANCE IN PATIENTS WITH CEREBRAL PALSY
+                    </p>
+                    <a
+                      href="https://cokhivietnam.vn/post/canh-tay-robot-ho-tro-van-dong-cho-nguoi-bai-nao"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.viewHereLink}
+                    >
+                      View Here
+                    </a>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -132,8 +165,9 @@ export default function BuildPage() {
                 className={styles.accordionContent}
                 onClick={() => toggleSection('achievements')}
               >
+                {/* Đã sửa lỗi chính tả ở đây */}
                 <h2 className={`${styles.mainTitle} ${styles.activeTitle}`}>
-                  ACHEIVEMENTS
+                  ACHIEVEMENTS
                 </h2>
                 <div
                   className={styles.certificatesGrid}
@@ -144,14 +178,17 @@ export default function BuildPage() {
                     <div className={styles.certImageWrapper}>
                       <Image
                         src="/image/cert1.png"
-                        alt="Bronze medal HUS Chemistry Olympiad"
+                        alt="Bronze medal at HSGS Olympiad"
                         fill
-                        sizes="264px"
-                        style={{ objectFit: 'contain' }}
+                        /* Đã cập nhật sizes xuống 188px */
+                        sizes="(max-width: 768px) 100vw, 188px"
+                        style={{ objectFit: 'cover' }}
                       />
                     </div>
-                    <div className={styles.certCaption}>
-                      Bronze medal HUS Chemistry Olympiad
+                    <div className={styles.certInfo}>
+                      <p className={styles.certTitle}>Bronze medal at HSGS Olympiad:</p>
+                      <p className={styles.certDetail}>Role: participant</p>
+                      <p className={styles.certDetail}>Scale: competed against students in gifted schools nationally, over 100 participants</p>
                     </div>
                   </div>
 
@@ -160,14 +197,16 @@ export default function BuildPage() {
                     <div className={styles.certImageWrapper}>
                       <Image
                         src="/image/cert2.png"
-                        alt="Bronze medal HUS Chemistry Olympiad"
+                        alt="Third prize at National Olympiad Selection"
                         fill
-                        sizes="264px"
-                        style={{ objectFit: 'contain' }}
+                        sizes="(max-width: 768px) 100vw, 188px"
+                        style={{ objectFit: 'cover' }}
                       />
                     </div>
-                    <div className={styles.certCaption}>
-                      Bronze medal HUS Chemistry Olympiad
+                    <div className={styles.certInfo}>
+                      <p className={styles.certTitle}>Third prize at National Olympiad Selection:</p>
+                      <p className={styles.certDetail}>Role: participant</p>
+                      <p className={styles.certDetail}>Scale: competed against 247 students regionally for the National Olympiad</p>
                     </div>
                   </div>
 
@@ -176,14 +215,34 @@ export default function BuildPage() {
                     <div className={styles.certImageWrapper}>
                       <Image
                         src="/image/cert3.png"
-                        alt="Bronze medal HUS Chemistry Olympiad"
+                        alt="World Invention Creativity Olympics 2026 Gold Award"
                         fill
-                        sizes="264px"
-                        style={{ objectFit: 'contain' }}
+                        sizes="(max-width: 768px) 100vw, 188px"
+                        style={{ objectFit: 'cover' }}
                       />
                     </div>
-                    <div className={styles.certCaption}>
-                      Bronze medal HUS Chemistry Olympiad
+                    <div className={styles.certInfo}>
+                      <p className={styles.certTitle}>World Invention Creativity Olympics 2026 Gold Award</p>
+                      <p className={styles.certDetail}>Role: team leader</p>
+                      <p className={styles.certDetail}>Scale: competed against 364 projects internationally</p>
+                    </div>
+                  </div>
+
+                  {/* Bằng khen 4 */}
+                  <div className={styles.certCard}>
+                    <div className={styles.certImageWrapper}>
+                      <Image
+                        src="/image/cert4.png"
+                        alt="World Invention Creativity Olympics 2026 Gold Award"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 188px"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                    <div className={styles.certInfo}>
+                      <p className={styles.certTitle}>World Invention Creativity Olympics 2026 Gold Award</p>
+                      <p className={styles.certDetail}>Role: team leader</p>
+                      <p className={styles.certDetail}>Scale: competed against 364 projects internationally</p>
                     </div>
                   </div>
                 </div>
@@ -193,7 +252,8 @@ export default function BuildPage() {
                 className={styles.accordionHeader}
                 onClick={() => toggleSection('achievements')}
               >
-                <span className={styles.accordionTitle}>ACHEIVEMENTS</span>
+                {/* Đã sửa lỗi chính tả ở đây */}
+                <span className={styles.accordionTitle}>ACHIEVEMENTS</span>
                 <Image
                   src="/image/muiten.png"
                   alt="Arrow"
