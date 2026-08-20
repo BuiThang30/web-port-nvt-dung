@@ -8,10 +8,9 @@
   box-sizing: border-box;
   background-color: #FFFFFF;
   margin: 0 auto;
-  overflow: hidden; /* Ngăn tràn nội dung con */
+  overflow: hidden; 
 }
 
-/* Background cưa + thước ở góc dưới bên phải */
 .whereWrapper::before {
   content: '';
   position: absolute;
@@ -27,7 +26,6 @@
   z-index: 1;
 }
 
-/* Khung chứa chính */
 .whereContainer {
   width: 100%;
   max-width: 1342px;
@@ -117,7 +115,6 @@
   flex-shrink: 0;
 }
 
-/* Nội dung bên trong khi mở */
 .accordionContent {
   padding: 24px 0 40px 0;
   font-family: var(--font-mona-sans), 'Mona Sans', sans-serif;
@@ -147,7 +144,6 @@
   max-width: 800px;
 }
 
-/* Đổi thành CSS Grid để tự động rớt dòng mượt mà */
 .galleryGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -173,38 +169,73 @@
 }
 
 /* ==================== SOCIETY SECTION ==================== */
-.societyContent {
+.societyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 40px; /* Cách nhau hàng ngang 48px, hàng dọc 40px */
   width: 100%;
-  max-width: 665px;
-  color: #000000;
-  text-align: justify;
-  font-family: var(--font-mona-sans), "Mona Sans", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.5;
 }
 
-.societyItem {
-  margin-bottom: 24px;
+.societyBlock {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.societyItem p, .societyLink {
+.societyDesc {
   color: #000000;
   font-family: var(--font-mona-sans), "Mona Sans", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 400; /* Font chữ bình thường như thiết kế */
+  line-height: 1.4;
+  margin-bottom: 12px;
+  text-align: left;
 }
 
-.societyItem p {
-  text-align: justify;
-  margin-bottom: 4px;
+/* Nhóm 3 ảnh (208 x 278) */
+.societyImages3 {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.img208 {
+  flex: 1; 
+  aspect-ratio: 208 / 278; /* Tỉ lệ chuẩn 208x278 */
+  position: relative;
+  background-color: #F0F0F0;
+}
+
+/* Nhóm 2 ảnh kết hợp (416 x 235 & 131 x 234) */
+.societyImagesMixed {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.img416 {
+  flex: 416; /* Tự động chia tỉ lệ ngang so với ảnh 131 */
+  aspect-ratio: 416 / 235; /* Tỉ lệ chuẩn 416x235 */
+  position: relative;
+  background-color: #F0F0F0;
+}
+
+.img131 {
+  flex: 131; /* Tự động chia tỉ lệ ngang */
+  aspect-ratio: 131 / 234; /* Tỉ lệ chuẩn 131x234 */
+  position: relative;
+  background-color: #F0F0F0;
 }
 
 .societyLink {
-  text-align: left;
-  word-break: break-all;
+  color: #000000;
+  font-family: var(--font-mona-sans), "Mona Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
   text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  word-break: break-all;
   display: inline-block;
   transition: opacity 0.2s ease;
 }
@@ -213,104 +244,70 @@
   opacity: 0.7;
 }
 
-
 /* ==================== RESPONSIVE BREAKPOINTS ==================== */
-
-/* Desktop tiêu chuẩn (< 1440px) */
 @media screen and (max-width: 1439px) {
-  .whereWrapper {
-    padding: 40px 32px 64px 32px;
-  }
-  
+  .whereWrapper { padding: 40px 32px 64px 32px; }
   .mainTitle { font-size: 80px; }
   .activeTitle { font-size: 64px; }
   .accordionTitle { font-size: 36px; }
 }
 
-/* Laptop nhỏ / Tablet Ngang (< 1200px) */
 @media screen and (max-width: 1199px) {
-  .whereWrapper {
-    padding: 32px 24px 48px 24px;
-  }
-
+  .whereWrapper { padding: 32px 24px 48px 24px; }
   .mainTitle { font-size: 64px; }
   .activeTitle { font-size: 56px; }
   .accordionTitle { font-size: 32px; }
-
-  /* Gallery rớt xuống 3 cột */
-  .galleryGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .galleryGrid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Tablet Dọc (< 1024px) */
 @media screen and (max-width: 1023px) {
   .mainTitle { font-size: 56px; }
   .activeTitle { font-size: 48px; }
   .accordionTitle { font-size: 28px;  width: 120px;}
   .introTagline { font-size: 15px; }
 
-  /* Gallery rớt xuống 2 cột */
   .galleryGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
   
+  /* Chuyển SOCIETY thành 1 cột trên iPad & Điện thoại */
+  .societyGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
   .arrowIcon { width: 40px; }
 }
 
-/* Mobile lớn (< 768px) */
 @media screen and (max-width: 767px) {
-  .whereWrapper {
-    padding: 24px 16px 40px 16px;
-  }
-
-  .mainTitle { 
-    font-size: 42px; 
-    margin-bottom: 12px;
-  }
-  
-  .activeTitle { 
-    font-size: 36px; 
-    margin-bottom: 24px;
-  }
-
+  .whereWrapper { padding: 24px 16px 40px 16px; }
+  .mainTitle { font-size: 42px; margin-bottom: 12px; }
+  .activeTitle { font-size: 36px; margin-bottom: 24px; }
   .accordionTitle { font-size: 24px;}
   .arrowIcon { width: 32px; margin-left: 16px; }
-  
-  .societyContent, .societyItem p, .societyLink {
-    font-size: 16px;
-  }
   
   .introTagline {
     padding: 12px;
     font-size: 14px;
   }
   
-  /* Giảm size background tránh bị tràn viền rối mắt */
-  .whereWrapper::before {
-    background-size: 50%;
-  }
+  .whereWrapper::before { background-size: 50%; }
+
+  .societyDesc, .societyLink { font-size: 16px; }
 }
 
-/* Mobile nhỏ (< 480px) */
 @media screen and (max-width: 479px) {
-  .whereWrapper {
-    padding: 20px 12px 32px 12px;
-  }
-
+  .whereWrapper { padding: 20px 12px 32px 12px; }
   .mainTitle { font-size: 32px; }
   .activeTitle { font-size: 28px; }
   .accordionTitle { font-size: 20px; width: 100px; }
   .arrowIcon { width: 24px; margin-left: 12px; }
 
-  /* Gallery về 1 cột trên điện thoại nhỏ */
   .galleryGrid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
-  .societyContent, .societyItem p, .societyLink {
-    font-size: 15px;
-  }
+  .societyDesc, .societyLink { font-size: 15px; }
 }

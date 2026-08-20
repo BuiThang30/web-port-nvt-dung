@@ -1,22 +1,88 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './build.module.css';
 
 type SectionKey = 'innovation' | 'research' | 'achievements' | null;
 
+// Cấu hình dữ liệu Slider kèm kích thước chuẩn xác
+const innovationSlides = [
+  {
+    images: ['/image/inno1.png', '/image/inno2.png'],
+    maxWidth: '316px',
+    aspectRatio: '316 / 425',
+    gap: '8px' // 316 + 8 + 316 = 640px
+  },
+  {
+    images: ['/image/inno3.png', '/image/inno4.png'],
+    maxWidth: '316px',
+    aspectRatio: '316 / 425',
+    gap: '8px'
+  },
+  {
+    images: ['/image/inno5.png'],
+    maxWidth: '640px',
+    aspectRatio: '640 / 365', // Slide 3 lùn hơn một chút
+    gap: '0px'
+  },
+  {
+    images: ['/image/inno6.png'],
+    maxWidth: '640px',
+    aspectRatio: '640 / 401', // Slide 4
+    gap: '0px'
+  },
+];
+
 export default function BuildPage() {
   const [activeSection, setActiveSection] = useState<SectionKey>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slideIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const toggleSection = (section: SectionKey) => {
     setActiveSection((prev) => (prev === section ? null : section));
+    setCurrentSlide(0);
+  };
+
+  const startAutoPlay = () => {
+    if (slideIntervalRef.current) clearInterval(slideIntervalRef.current);
+    slideIntervalRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % innovationSlides.length);
+    }, 3000);
+  };
+
+  const stopAutoPlay = () => {
+    if (slideIntervalRef.current) clearInterval(slideIntervalRef.current);
+  };
+
+  useEffect(() => {
+    if (activeSection === 'innovation') {
+      startAutoPlay();
+    } else {
+      stopAutoPlay();
+    }
+    return () => {
+      stopAutoPlay();
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    };
+  }, [activeSection]);
+
+  const handleDotClick = (index: number) => {
+    setCurrentSlide(index);
+    stopAutoPlay();
+
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+
+    resumeTimeoutRef.current = setTimeout(() => {
+      startAutoPlay();
+    }, 6000);
   };
 
   return (
     <div className={styles.buildWrapper}>
       <div className={styles.buildContainer}>
-        {/* Tiêu đề & Tagline màu vàng hiển thị ở trạng thái MẶC ĐỊNH */}
         {activeSection === null && (
           <>
             <h1 className={styles.mainTitle}>WHAT I BUILD</h1>
@@ -26,13 +92,12 @@ export default function BuildPage() {
           </>
         )}
 
-        {/* Khung danh sách chứa các mục */}
         <div
           className={`${styles.accordionList} ${
             activeSection !== null ? styles.hasActive : ''
           } ${activeSection === 'innovation' ? styles.isFirstActive : ''}`}
         >
-          {/* --- 1. INNOVATION --- */}
+          {/* ==================== 1. INNOVATION ==================== */}
           <div
             className={`${styles.accordionItem} ${
               activeSection === 'innovation' ? styles.activeItem : ''
@@ -46,21 +111,67 @@ export default function BuildPage() {
                 <h2 className={`${styles.mainTitle} ${styles.activeTitle}`}>
                   INNOVATION
                 </h2>
-                <div
-                  className={styles.textContent}
-                  onClick={(e) => e.stopPropagation()}
+                
+                <div 
+                  className={styles.splitContent}
+                  onClick={(e) => e.stopPropagation()} 
                 >
-                  <p><strong>Dead zone Emergency distress device</strong></p>
-                  <br />
-                  <p><strong>Problem:</strong> Flooding regularly knocks out cell towers in Vietnam, right when people most need to call for help.</p>
+                  <div className={styles.textColumn}>
+                    <p><strong>Dead zone Emergency distress device</strong></p>
+                    <br />
+                    <p><strong>Problem:</strong> Flooding regularly knocks out cell towers in Vietnam, right when people most need to call for help.</p>
+                    <p><strong>Solution:</strong> A mobile beacon that skips cell networks entirely. A GPS chip and a low-power LoRa radio send a location straight to a nearby base station when the SOS button is pressed, no satellite, no subscription.</p>
+                    <p><strong>Stack:</strong> ESP32-C3, GPS module, LoRa transceiver, Express.js/SQLite backend, live web dashboard.</p>
+                    <p><strong>Results:</strong> 94% radio delivery rate over 50 test packets, 8-10 km range, full system succeeded end-to-end 4 times out of 5.</p>
+                    <p><strong>Status:</strong> Working prototype. Receiver enclosure still unfinished.</p>
+                  </div>
 
-                  <p><strong>Solution:</strong> A mobile beacon that skips cell networks entirely. A GPS chip and a low-power LoRa radio send a location straight to a nearby base station when the SOS button is pressed, no satellite, no subscription.</p>
-
-                  <p><strong>Stack:</strong> ESP32-C3, GPS module, LoRa transceiver, Express.js/SQLite backend, live web dashboard.</p>
-
-                  <p><strong>Results:</strong> 94% radio delivery rate over 50 test packets, 8-10 km range, full system succeeded end-to-end 4 times out of 5.</p>
-                  
-                  <p><strong>Status:</strong> Working prototype. Receiver enclosure still unfinished.</p>
+                  {/* Kéo giãn bề ngang max 640px */}
+                  <div className={styles.sliderColumn}>
+                    <div className={styles.sliderViewport}>
+                      <div 
+                        className={styles.sliderTrack}
+                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                      >
+                        {innovationSlides.map((slideData, slideIndex) => (
+                          <div 
+                            key={slideIndex} 
+                            className={styles.slide}
+                            style={{ gap: slideData.gap }}
+                          >
+                            {slideData.images.map((imgSrc, imgIndex) => (
+                              <div 
+                                key={imgIndex} 
+                                className={styles.slideImageWrapper}
+                                style={{
+                                  maxWidth: slideData.maxWidth,
+                                  aspectRatio: slideData.aspectRatio
+                                }}
+                              >
+                                <Image
+                                  src={imgSrc}
+                                  alt={`Innovation ${slideIndex}-${imgIndex}`}
+                                  fill
+                                  sizes="(max-width: 768px) 100vw, 640px"
+                                  style={{ objectFit: 'cover' }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className={styles.dotsWrapper}>
+                      {innovationSlides.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`${styles.dot} ${currentSlide === index ? styles.activeDot : ''}`}
+                          onClick={() => handleDotClick(index)}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -80,7 +191,7 @@ export default function BuildPage() {
             )}
           </div>
 
-          {/* --- 2. RESEARCH --- */}
+          {/* ==================== 2. RESEARCH ==================== */}
           <div
             className={`${styles.accordionItem} ${
               activeSection === 'research' ? styles.activeItem : ''
@@ -98,7 +209,6 @@ export default function BuildPage() {
                   className={styles.textContent}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* Item 1 */}
                   <div className={styles.researchItem}>
                     <p className={styles.researchTitle}>
                       -Improving GI Polyp Segmentation with a Balanced-Mix-Driven
@@ -106,7 +216,6 @@ export default function BuildPage() {
                     <p className={styles.authorText}>Author</p>
                   </div>
 
-                  {/* Item 2 */}
                   <div className={styles.researchItem}>
                     <p className={styles.researchTitle}>
                       -Dead Zone Emergency Distress Device
@@ -121,7 +230,6 @@ export default function BuildPage() {
                     </a>
                   </div>
 
-                  {/* Item 3 */}
                   <div className={styles.researchItem}>
                     <p className={styles.researchTitle}>
                       -ROBOTIC ARM FOR MOVEMENT ASSISTANCE IN PATIENTS WITH CEREBRAL PALSY
@@ -154,7 +262,7 @@ export default function BuildPage() {
             )}
           </div>
 
-          {/* --- 3. ACHIEVEMENTS --- */}
+          {/* ==================== 3. ACHIEVEMENTS ==================== */}
           <div
             className={`${styles.accordionItem} ${
               activeSection === 'achievements' ? styles.activeItem : ''
@@ -165,7 +273,6 @@ export default function BuildPage() {
                 className={styles.accordionContent}
                 onClick={() => toggleSection('achievements')}
               >
-                {/* Đã sửa lỗi chính tả ở đây */}
                 <h2 className={`${styles.mainTitle} ${styles.activeTitle}`}>
                   ACHIEVEMENTS
                 </h2>
@@ -173,14 +280,12 @@ export default function BuildPage() {
                   className={styles.certificatesGrid}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* Bằng khen 1 */}
                   <div className={styles.certCard}>
                     <div className={styles.certImageWrapper}>
                       <Image
                         src="/image/cert1.png"
                         alt="Bronze medal at HSGS Olympiad"
                         fill
-                        /* Đã cập nhật sizes xuống 188px */
                         sizes="(max-width: 768px) 100vw, 188px"
                         style={{ objectFit: 'cover' }}
                       />
@@ -192,7 +297,6 @@ export default function BuildPage() {
                     </div>
                   </div>
 
-                  {/* Bằng khen 2 */}
                   <div className={styles.certCard}>
                     <div className={styles.certImageWrapper}>
                       <Image
@@ -210,7 +314,6 @@ export default function BuildPage() {
                     </div>
                   </div>
 
-                  {/* Bằng khen 3 */}
                   <div className={styles.certCard}>
                     <div className={styles.certImageWrapper}>
                       <Image
@@ -228,7 +331,6 @@ export default function BuildPage() {
                     </div>
                   </div>
 
-                  {/* Bằng khen 4 */}
                   <div className={styles.certCard}>
                     <div className={styles.certImageWrapper}>
                       <Image
@@ -252,7 +354,6 @@ export default function BuildPage() {
                 className={styles.accordionHeader}
                 onClick={() => toggleSection('achievements')}
               >
-                {/* Đã sửa lỗi chính tả ở đây */}
                 <span className={styles.accordionTitle}>ACHIEVEMENTS</span>
                 <Image
                   src="/image/muiten.png"

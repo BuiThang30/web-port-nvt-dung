@@ -12,7 +12,6 @@
   margin: 0 auto;
 }
 
-/* Background cưa + thước góc dưới bên phải */
 .buildWrapper::before {
   content: '';
   position: absolute;
@@ -28,7 +27,6 @@
   z-index: 1;
 }
 
-/* Khung chứa nội dung */
 .buildContainer {
   width: 100%;
   max-width: 1342px;
@@ -94,7 +92,6 @@
   border-bottom: none;
 }
 
-/* Khi một mục mở ra */
 .accordionItem.activeItem {
   min-height: 650px;
   height: auto;
@@ -134,7 +131,6 @@
   flex-shrink: 0;
 }
 
-/* Nội dung bên trong Accordion */
 .accordionContent {
   width: 100%;
   height: 100%;
@@ -162,6 +158,82 @@
   font-size: 20px;
   line-height: 1.5;
   text-align: justify;
+}
+
+/* ==================== INNOVATION SPLIT LAYOUT (SLIDER) ==================== */
+.splitContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+  width: 100%;
+}
+
+.textColumn {
+  flex: 1;
+  max-width: 665px;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.sliderColumn {
+  width: 100%;
+  max-width: 640px; /* Max rộng của slider là 640px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sliderViewport {
+  width: 100%;
+  aspect-ratio: 640 / 425; /* Tỉ lệ chuẩn theo yêu cầu, responsive tuyệt đối */
+  display: flex;
+  align-items: center; /* Căn giữa dọc cho ảnh lùn */
+  overflow: hidden;
+}
+
+.sliderTrack {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.slideImageWrapper {
+  width: 100%; /* Sẽ bị thu hẹp lại bởi maxWidth trong style inline */
+  position: relative;
+  background-color: #f0f0f0;
+}
+
+.dotsWrapper {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #000000;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot.activeDot {
+  background-color: #000000;
 }
 
 /* ==================== RESEARCH SECTION ==================== */
@@ -272,123 +344,82 @@
 }
 
 /* ==================== RESPONSIVE BREAKPOINTS ==================== */
-
-/* Desktop tiêu chuẩn (< 1440px) */
 @media screen and (max-width: 1439px) {
-  .buildWrapper {
-    padding: 48px 40px;
-  }
-  
+  .buildWrapper { padding: 48px 40px; }
   .mainTitle { font-size: 80px; }
   .activeTitle { font-size: 64px; }
   .accordionTitle { font-size: 36px; }
 
-  /* Nếu màn hình nhỏ không đủ 4 cột, dồn thành 2 cột */
   .certificatesGrid {
     grid-template-columns: repeat(2, 187.18px);
   }
 }
 
-/* Laptop nhỏ / Tablet Ngang (< 1200px) */
 @media screen and (max-width: 1199px) {
-  .buildWrapper {
-    padding: 40px 32px;
-  }
-
+  .buildWrapper { padding: 40px 32px; }
   .mainTitle { font-size: 64px; }
   .activeTitle { font-size: 56px; }
   .accordionTitle { font-size: 32px; }
 }
 
-/* Tablet Dọc (< 1024px) */
 @media screen and (max-width: 1023px) {
-  .buildWrapper {
-    padding: 32px 24px;
-  }
-
+  .buildWrapper { padding: 32px 24px; }
   .mainTitle { font-size: 56px; }
   .activeTitle { font-size: 48px; }
-  
-  .accordionTitle { 
-    font-size: 28px; 
-    width: 250px;
-  }
-  
+  .accordionTitle { font-size: 28px; width: 250px; }
   .arrowIcon { width: 40px; }
+
+  .splitContent {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .sliderColumn {
+    max-width: 100%; /* Trên mobile tự giãn full bề ngang */
+  }
 }
 
-/* Mobile lớn (< 768px) */
 @media screen and (max-width: 767px) {
   .buildWrapper {
     padding: 24px 16px;
     min-height: auto;
   }
-
-  .mainTitle { 
-    font-size: 42px; 
-    margin-bottom: 12px;
-  }
-  
-  .activeTitle { 
-    font-size: 36px; 
-    margin-bottom: 16px;
-  }
-
-  .accordionTitle { 
-    font-size: 24px; 
-    width: 200px;
-  }
-  
+  .mainTitle { font-size: 42px; margin-bottom: 12px; }
+  .activeTitle { font-size: 36px; margin-bottom: 16px; }
+  .accordionTitle { font-size: 24px; width: 200px; }
   .arrowIcon { width: 32px; margin-left: 16px; }
-  
-  .introTagline {
-    padding: 10px; 
-  }
+  .introTagline { padding: 10px; }
+  .buildWrapper::before { background-size: 60%; }
 
-  .buildWrapper::before {
-    background-size: 60%;
-  }
-
-  /* Thu nhỏ font size cho mobile gọn hơn */
   .textContent, 
   .researchTitle, 
   .authorText, 
   .viewHereLink,
   .certTitle,
-  .certDetail {
+  .certDetail,
+  .textColumn {
     font-size: 16px;
   }
 
-  /* Trên mobile, xếp 1 cột và căn giữa card */
   .certificatesGrid {
     grid-template-columns: 187.18px;
     justify-content: center;
   }
 }
 
-/* Mobile nhỏ (< 480px) */
 @media screen and (max-width: 479px) {
-  .buildWrapper {
-    padding: 20px 12px;
-  }
-
+  .buildWrapper { padding: 20px 12px; }
   .mainTitle { font-size: 32px; }
   .activeTitle { font-size: 28px; }
-  
-  .accordionTitle { 
-    font-size: 20px; 
-    width: 150px;
-  }
-  
+  .accordionTitle { font-size: 20px; width: 150px; }
   .arrowIcon { width: 24px; }
   
-  /* Cho các text nhỏ hơn một chút nữa nếu màn hình quá bé */
   .textContent, 
   .researchTitle, 
   .authorText, 
   .viewHereLink,
   .certTitle,
-  .certDetail {
+  .certDetail,
+  .textColumn {
     font-size: 14px;
   }
 }

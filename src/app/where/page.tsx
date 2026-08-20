@@ -69,7 +69,7 @@ export default function WherePage() {
                     </div>
                   </div>
 
-                  {/* Hoạt động 2 (Đã sửa lỗi hiển thị to khổng lồ) */}
+                  {/* Hoạt động 2 */}
                   <div className={styles.sectionBlock}>
                     <div className={styles.sectionSubTitle}>
                       Head of Chemistry Expertise in HSGS Educational Assistance Team
@@ -141,9 +141,66 @@ export default function WherePage() {
                   SOCIETY
                 </h2>
                 
-                <div className={styles.societyContent} onClick={(e) => e.stopPropagation()}>
-                  <div className={styles.societyItem}>
-                    <p>-Chemistry YouTube channel:</p>
+                <div className={styles.societyGrid} onClick={(e) => e.stopPropagation()}>
+                  
+                  {/* Khối 1: Góc trên bên trái */}
+                  <div className={styles.societyBlock}>
+                    <p className={styles.societyDesc}>
+                      Gieo ánh sáng, thắp tương lai charity program at Lùng Lý and Lang Cang rural commune:
+                    </p>
+                    <div className={styles.societyImages3}>
+                      <div className={styles.img208}>
+                        <Image src="/image/soc-1.png" alt="Charity 1" fill sizes="(max-width: 768px) 33vw, 208px" style={{ objectFit: 'cover' }} />
+                      </div>
+                      <div className={styles.img208}>
+                        <Image src="/image/soc-2.png" alt="Charity 2" fill sizes="(max-width: 768px) 33vw, 208px" style={{ objectFit: 'cover' }} />
+                      </div>
+                      <div className={styles.img208}>
+                        <Image src="/image/soc-3.png" alt="Charity 3" fill sizes="(max-width: 768px) 33vw, 208px" style={{ objectFit: 'cover' }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Khối 2: Góc trên bên phải */}
+                  <div className={styles.societyBlock}>
+                    <p className={styles.societyDesc}>
+                      Viet Nam Red Cross Society volunteer:
+                    </p>
+                    <div className={styles.societyImages3}>
+                      <div className={styles.img208}>
+                        <Image src="/image/soc-4.png" alt="Charity 4" fill sizes="(max-width: 768px) 33vw, 208px" style={{ objectFit: 'cover' }} />
+                      </div>
+                      <div className={styles.img208}>
+                        <Image src="/image/soc-5.png" alt="Charity 5" fill sizes="(max-width: 768px) 33vw, 208px" style={{ objectFit: 'cover' }} />
+                      </div>
+                      <div className={styles.img208}>
+                        <Image src="/image/soc-6.png" alt="Charity 6" fill sizes="(max-width: 768px) 33vw, 208px" style={{ objectFit: 'cover' }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Khối 3: Góc dưới bên trái */}
+                  <div className={styles.societyBlock}>
+                    <p className={styles.societyDesc}>
+                      DEco Project 2024:
+                    </p>
+                    <div className={styles.societyImagesMixed}>
+                      {/* Ảnh to (416x235) */}
+                      <div className={styles.img416}>
+                        <Image src="/image/soc-7.png" alt="DEco 1" fill sizes="(max-width: 768px) 76vw, 416px" style={{ objectFit: 'cover' }} />
+                      </div>
+                      {/* Ảnh dọc hẹp (131x234) */}
+                      <div className={styles.img131}>
+                        <Image src="/image/soc-8.png" alt="DEco 2" fill sizes="(max-width: 768px) 24vw, 131px" style={{ objectFit: 'cover' }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Khối 4: Góc dưới bên phải (YouTube) */}
+                  <div className={styles.societyBlock}>
+                    <p className={styles.societyDesc}>
+                      Chemistry YouTube channel:
+                    </p>
                     <a
                       href="https://www.youtube.com/@ChemJoe"
                       target="_blank"
@@ -154,29 +211,6 @@ export default function WherePage() {
                     </a>
                   </div>
 
-                  <div className={styles.societyItem}>
-                    <p>-Gieo ánh sáng, thắp tương lai charity program at Lùng Lý and Lang Cang rural commune:</p>
-                    <a
-                      href="https://drive.google.com/drive/folders/1TGPlLpXXpCSF4PwNXi44x3v9gWp-7UO4"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.societyLink}
-                    >
-                      https://drive.google.com/drive/folders/1TGPlLpXXpCSF4PwNXi44x3v9gWp-7UO4?usp=sharing
-                    </a>
-                  </div>
-
-                  <div className={styles.societyItem}>
-                    <p>-DEco Project 2024:</p>
-                    <a
-                      href="https://drive.google.com/drive/folders/1qr2ptvO1Nzk--7h7i5JWHk_48MCodjne"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.societyLink}
-                    >
-                      https://drive.google.com/drive/folders/1qr2ptvO1Nzk--7h7i5JWHk_48MCodjne?usp=sharing
-                    </a>
-                  </div>
                 </div>
               </div>
             ) : (
